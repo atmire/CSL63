@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+       default-lazy-init="true">
+
+    <util:list id="citationFormatList" value-type="com.atmire.app.xmlui.aspect.citations.CitationFormat">
+        <ref bean="htmlFormat"/>
+        <ref bean="textFormat"/>
+        <ref bean="asciidocFormat"/>
+        <ref bean="foFormat"/>
+        <ref bean="rtfFormat"/>
+    </util:list>
+
+    <bean id="htmlFormat" class="com.atmire.app.xmlui.aspect.citations.CitationFormat">
+        <property name="format" value="html"/>
+        <property name="fileExtension" value="html"/>
+    </bean>
+
+    <bean id="textFormat" class="com.atmire.app.xmlui.aspect.citations.CitationFormat">
+        <property name="format" value="text"/>
+        <property name="fileExtension" value="txt"/>
+    </bean>
+
+    <bean id="asciidocFormat" class="com.atmire.app.xmlui.aspect.citations.CitationFormat">
+        <property name="format" value="asciidoc"/>
+        <property name="fileExtension" value="txt"/>
+    </bean>
+
+    <bean id="foFormat" class="com.atmire.app.xmlui.aspect.citations.CitationFormat">
+        <property name="format" value="fo"/>
+        <property name="fileExtension" value="fo"/>
+    </bean>
+
+    <bean id="rtfFormat" class="com.atmire.app.xmlui.aspect.citations.CitationFormat">
+        <property name="format" value="rtf"/>
+        <property name="fileExtension" value="rtf"/>
+    </bean>
+</beans>

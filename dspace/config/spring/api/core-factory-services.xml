@@ -47,6 +47,6 @@
     <!--Configurable workflow services, uncomment to enable-->
     <!--<bean id="workflowServiceFactory" class="org.dspace.xmlworkflow.factory.XmlWorkflowServiceFactoryImpl"/>-->
 
-
+    <bean id="cslCitationServiceFactory" class="com.atmire.content.factory.impl.CSLCitationServiceFactoryImpl"/>
 
 </beans>

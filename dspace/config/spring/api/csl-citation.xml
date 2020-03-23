@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+    default-lazy-init="true">
+
+    <bean id="DSpaceListItemDataProvider" class="com.atmire.csl.CustomDSpaceListItemDataProvider" scope="prototype">
+        <property name="CSLTypeMap">
+            <util:map id="CSLTypeMap">
+                <entry key="Journal article" value="#{ T(de.undercouch.citeproc.csl.CSLType).ARTICLE_JOURNAL}"/>
+                <entry key="Book" value="#{ T(de.undercouch.citeproc.csl.CSLType).BOOK}"/>
+                <entry key="Book chapter" value="#{ T(de.undercouch.citeproc.csl.CSLType).CHAPTER}"/>
+                <entry key="Conference output" value="#{ T(de.undercouch.citeproc.csl.CSLType).PAPER_CONFERENCE}"/>
+                <entry key="Patent" value="#{ T(de.undercouch.citeproc.csl.CSLType).PATENT}"/>
+                <entry key="Other scientific communication" value="#{ T(de.undercouch.citeproc.csl.CSLType).PERSONAL_COMMUNICATION}"/>
+                <entry key="Report" value="#{ T(de.undercouch.citeproc.csl.CSLType).REPORT}"/>
+                <entry key="Working paper - Preprint" value="#{ T(de.undercouch.citeproc.csl.CSLType).REVIEW}"/>
+                <entry key="Thesis" value="#{ T(de.undercouch.citeproc.csl.CSLType).THESIS}"/>
+            </util:map>
+        </property>
+        <property name="abstrct" value="dc.description.abstractEn"/>
+        <property name="DOI" value="dc.identifier.doi"/>
+        <property name="genre" value="dc.type"/>
+        <property name="ISBN" value="dc.identifier.isbn"/>
+        <property name="ISSN" value="dc.identifier.issn"/>
+        <property name="keyword" value="dc.subject.*"/>
+        <property name="note" value="dc.subject.jel"/>
+        <property name="page" value="bordeaux.page"/>
+        <property name="PMID" value="dc.identifier.pubmed"/>
+        <property name="publisher" value="dc.publisher"/>
+        <property name="publisherPlace" value="dc.publisher.location"/>
+        <property name="title" value="dc.title.en"/>
+        <property name="URL" value="dc.identifier.uri"/>
+        <property name="issue" value="bordeaux.issue"/>
+        <property name="numberOfPages" value="bordeaux.page"/>
+        <property name="volume" value="bordeaux.volume"/>
+        <property name="issued" value="dc.date.issued"/>
+        <property name="containerTitle" value="bordeaux.journal"/>
+        <property name="containerTitleShort" value="bordeaux.journal"/>
+<!--        <property name="author" value="dc.contributor.author"/>-->
+        <property name="editor" value="dc.contributor.editor"/>
+    </bean>
+</beans>

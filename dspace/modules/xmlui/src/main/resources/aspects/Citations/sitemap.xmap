@@ -1,0 +1,120 @@
+<map:sitemap xmlns:map="http://apache.org/cocoon/sitemap/1.0">
+
+    <map:components>
+        <map:matchers>
+            <map:matcher name="HandleTypeMatcher" src="org.dspace.app.xmlui.aspect.general.HandleTypeMatcher" />
+            <map:matcher name="RequestParameter" src="org.apache.cocoon.matching.RequestParameterMatcher"/>
+            <map:matcher name="RegexpRequestParameterName"
+                         src="com.atmire.cocoon.matching.RegexpRequestParameterNameMatcher"/>
+        </map:matchers>
+        <map:transformers>
+            <map:transformer name="Navigation" src="com.atmire.dspace.app.xmlui.aspect.citations.Navigation"/>
+            <map:transformer name="Notice" src="org.dspace.app.xmlui.aspect.general.NoticeTransformer"/>
+            <map:transformer name="Citations" src="com.atmire.dspace.app.xmlui.aspect.citations.CitationsTransformer"/>
+            <map:transformer name="EditStyle" src="com.atmire.dspace.app.xmlui.aspect.citations.EditStyleTransformer"/>
+            <map:transformer name="DiscoveryCitationTransformer"
+                             src="com.atmire.app.xmlui.aspect.citations.DiscoveryCitationTransformer"/>
+            <map:transformer name="ItemCitationTransformer"
+                             src="com.atmire.app.xmlui.aspect.citations.ItemCitationTransformer"/>
+            <map:transformer name="CitationExportError"
+                             src="com.atmire.dspace.app.xmlui.aspect.citations.CitationExportErrorTransformer"/>
+        </map:transformers>
+        <map:actions>
+            <map:action name="EditStyle" src="com.atmire.dspace.app.xmlui.aspect.citations.EditStyleAction"/>
+            <map:action name="AddNewStyle" src="com.atmire.dspace.app.xmlui.aspect.citations.AddNewStyleAction"/>
+            <map:action name="DeleteStyles" src="com.atmire.dspace.app.xmlui.aspect.citations.DeleteStylesAction"/>
+            <map:action name="Redirect" src="com.atmire.cocoon.acting.RedirectAction"/>
+        </map:actions>
+    </map:components>
+
+    <map:pipelines>
+
+        <map:pipeline>
+            <map:generate/>
+
+            <map:match pattern="discover">
+                <map:transform type="DiscoveryCitationTransformer"/>
+            </map:match>
+
+            <map:match pattern="handle/*/*/discover">
+                <map:transform type="DiscoveryCitationTransformer"/>
+            </map:match>
+
+            <map:match pattern="handle/*/*">
+                <map:match type="HandleTypeMatcher" pattern="item">
+                    <map:transform type="ItemCitationTransformer"/>
+                </map:match>
+            </map:match>
+
+            <map:match pattern="discover/citation-export/error">
+                <map:transform type="CitationExportError"/>
+            </map:match>
+
+            <map:select type="AuthenticatedSelector">
+                <map:when test="eperson">
+                    <map:transform type="Navigation"/>
+                </map:when>
+            </map:select>
+
+            <map:match pattern="citations**">
+
+                <map:select type="AuthenticatedSelector">
+                    <map:when test="eperson">
+
+                        <map:match type="RegexpRequestParameterName" pattern="edit_(\d+)">
+                            <map:act type="Redirect">
+                                <map:parameter name="path" value="citations/edit/{1}"/>
+                            </map:act>
+                        </map:match>
+
+                        <map:match pattern="citations/edit/*">
+                            <map:transform type="EditStyle">
+                                <map:parameter name="edit_id" value="{1}"/>
+                            </map:transform>
+                        </map:match>
+
+                        <map:match type="RequestParameter" pattern="edit">
+                            <map:act type="EditStyle">
+                                <map:transform type="Notice">
+                                    <map:parameter name="outcome" value="{outcome}"/>
+                                    <map:parameter name="message" value="{message}"/>
+                                </map:transform>
+                            </map:act>
+                        </map:match>
+
+                        <map:match type="RequestParameter" pattern="add">
+                            <map:act type="AddNewStyle">
+                                <map:transform type="Notice">
+                                    <map:parameter name="outcome" value="{outcome}"/>
+                                    <map:parameter name="message" value="{message}"/>
+                                </map:transform>
+                            </map:act>
+                        </map:match>
+
+                        <map:match type="RequestParameter" pattern="delete">
+                            <map:act type="DeleteStyles">
+                                <map:transform type="Notice">
+                                    <map:parameter name="outcome" value="{outcome}"/>
+                                    <map:parameter name="message" value="{message}"/>
+                                </map:transform>
+                            </map:act>
+                        </map:match>
+
+                        <map:match pattern="citations">
+                            <map:transform type="Citations"/>
+                        </map:match>
+
+                    </map:when>
+                    <map:otherwise>
+                        <map:act type="StartAuthentication"/>
+                    </map:otherwise>
+                </map:select>
+
+            </map:match>
+
+            <map:serialize type="xml"/>
+        </map:pipeline>
+
+    </map:pipelines>
+
+</map:sitemap>

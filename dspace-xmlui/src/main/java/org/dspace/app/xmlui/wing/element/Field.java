@@ -86,8 +86,10 @@ public abstract class Field extends AbstractWingElement implements
 
     /** The name of the required attribute */
     public static final String A_REQUIRED = "required";
-    
-    
+
+    /** The name of the readonly attribute*/
+    public static final String A_READONLY = "readonly";
+
     /** The possible field types */
     public static final String TYPE_BUTTON = "button";
 
@@ -129,6 +131,9 @@ public abstract class Field extends AbstractWingElement implements
 
     /** Whether this field is disabled */
     protected boolean disabled;
+
+    /** Whether this field is readonly */
+    protected boolean readonly;
 
     /** Whether this field is required */
     protected boolean required;
@@ -194,6 +199,7 @@ public abstract class Field extends AbstractWingElement implements
         this.name = name;
         this.type = type;
         this.disabled = false;
+        this.readonly = false;
         this.required = false;
         this.rend = rend;
     }
@@ -227,6 +233,16 @@ public abstract class Field extends AbstractWingElement implements
     public void setDisabled()
     {
         this.disabled = true;
+    }
+
+    /**
+     * Set this field to either be readonly or not as determined by the
+     * readonly parameter.
+     *
+     * @param readonly Determine if the field is read only or not.
+     */
+    public void setReadonly(boolean readonly) {
+        this.readonly = readonly;
     }
 
     /**
@@ -530,6 +546,9 @@ public abstract class Field extends AbstractWingElement implements
         if (this.disabled)
         {
             attributes.put(A_DISABLED, this.disabled);
+        }
+        if (this.readonly) {
+            attributes.put(A_READONLY, this.readonly);
         }
         if (this.required)
         {

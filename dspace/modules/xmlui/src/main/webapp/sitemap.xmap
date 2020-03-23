@@ -204,6 +204,7 @@
                     <map:reader name="JSONControlledVocabularyReader" src="org.dspace.app.xmlui.cocoon.JSONControlledVocabularyReader"/>
                                         
                     <map:reader name="HandleResolverReader" src="org.dspace.app.xmlui.aspect.handle.HandleResolverReader"/>
+                    <map:reader name="CitationExportReader" src="com.atmire.app.xmlui.aspect.citations.CitationExportReader"/>
                 </map:readers>
                 <map:actions>
                         <map:action name="locale" src="org.dspace.app.xmlui.cocoon.DSpaceLocaleAction"/>
@@ -470,6 +471,10 @@
                         <map:serialize type="xml"/>
                      <!-- </map:match>
                          -->
+                  </map:match>
+
+                  <map:match pattern="discover/citation-export">
+                    <map:read type="CitationExportReader"/>
                   </map:match>
                 </map:pipeline>
 
