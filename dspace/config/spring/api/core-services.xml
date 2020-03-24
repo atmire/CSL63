@@ -116,4 +116,7 @@
     <bean class="org.dspace.xmlworkflow.WorkflowRequirementsServiceImpl"/>
     <bean class="org.dspace.xmlworkflow.XmlWorkflowFactoryImpl"/>-->
 
+
+    <bean class="com.atmire.csl.service.impl.CSLCitationServiceImpl"/>
+
 </beans>

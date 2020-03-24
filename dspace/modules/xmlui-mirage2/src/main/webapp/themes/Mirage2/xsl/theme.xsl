@@ -54,6 +54,8 @@
     <xsl:import href="aspect/citations/item-citation-export.xsl"/>
     <xsl:import href="custom/aspect/discovery/search-controls.xsl"/>
     <xsl:import href="custom/core/global-variables.xsl"/>
+    <xsl:import href="custom/core/page-structure.xsl"/>
+    <xsl:import href="custom/aspect/artifactbrowser/item-view.xsl"/>
 
     <xsl:output indent="yes"/>
 </xsl:stylesheet>

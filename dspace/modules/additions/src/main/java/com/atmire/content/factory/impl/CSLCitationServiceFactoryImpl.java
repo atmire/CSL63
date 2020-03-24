@@ -9,10 +9,6 @@ public class CSLCitationServiceFactoryImpl extends CSLCitationServiceFactory {
     @Autowired(required = true)
     private CSLCitationService cslCitationService;
 
-    private CSLCitationServiceFactoryImpl () {
-        String a = "b";
-    }
-
     public CSLCitationService getCslCitationService() {
         return cslCitationService;
     }

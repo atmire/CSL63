@@ -122,6 +122,10 @@
                     </xsl:choose>
                     <!-- Javascript at the bottom for fast page loading -->
                     <xsl:call-template name="addJavascript"/>
+                    <xsl:call-template name="help-modal"/>
+                    <xsl:call-template name="citation-help-modal"/>
+                    <xsl:call-template name="item-citation-help-modal"/>
+                    <xsl:call-template name="citation-format-modal"/>
                 </body>
                 <xsl:text disable-output-escaping="yes">&lt;/html&gt;</xsl:text>
 

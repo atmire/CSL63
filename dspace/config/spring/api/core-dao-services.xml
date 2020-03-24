@@ -58,6 +58,6 @@
     <bean class="org.dspace.xmlworkflow.storedcomponents.dao.impl.WorkflowItemRoleDAOImpl"/>
     <bean class="org.dspace.xmlworkflow.storedcomponents.dao.impl.XmlWorkflowItemDAOImpl"/>
 
-
+    <bean class="com.atmire.csl.dao.impl.CslStyleDAOImpl"/>
 
 </beans>

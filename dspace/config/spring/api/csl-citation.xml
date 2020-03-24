@@ -25,18 +25,12 @@
         <property name="ISSN" value="dc.identifier.issn"/>
         <property name="keyword" value="dc.subject.*"/>
         <property name="note" value="dc.subject.jel"/>
-        <property name="page" value="bordeaux.page"/>
         <property name="PMID" value="dc.identifier.pubmed"/>
         <property name="publisher" value="dc.publisher"/>
         <property name="publisherPlace" value="dc.publisher.location"/>
         <property name="title" value="dc.title.en"/>
         <property name="URL" value="dc.identifier.uri"/>
-        <property name="issue" value="bordeaux.issue"/>
-        <property name="numberOfPages" value="bordeaux.page"/>
-        <property name="volume" value="bordeaux.volume"/>
         <property name="issued" value="dc.date.issued"/>
-        <property name="containerTitle" value="bordeaux.journal"/>
-        <property name="containerTitleShort" value="bordeaux.journal"/>
 <!--        <property name="author" value="dc.contributor.author"/>-->
         <property name="editor" value="dc.contributor.editor"/>
     </bean>

@@ -37,6 +37,7 @@
     <xsl:template match="dim:dim" mode="itemSummaryView-DIM">
         <div class="item-summary-view-metadata">
             <xsl:call-template name="itemSummaryView-DIM-title"/>
+            <xsl:call-template name="itemCitationExportButton"/>
             <div class="row">
                 <div class="col-sm-4">
                     <div class="row">

@@ -17,8 +17,7 @@
 
         <xsl:if test="//dri:div[@n='citation-controls-gear']">
             <button type="button" class="btn btn-default dropdown-toggle export-button" data-toggle="dropdown">
-                <span class="fa fa-quote-left" aria-hidden="true"/>
-                <span class="hidden-xs export-text">
+                <span class="export-text">
                     <i18n:text>xmlui.dri2xhtml.METS-1.0.citations</i18n:text>
                 </span>
             </button>
