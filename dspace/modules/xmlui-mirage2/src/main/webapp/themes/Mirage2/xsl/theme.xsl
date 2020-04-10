@@ -49,9 +49,9 @@
     <xsl:import href="aspect/artifactbrowser/one-offs.xsl"/>
     <xsl:import href="aspect/submission/submission.xsl"/>
 
-    <xsl:import href="aspect/citations/citation-export.xsl"/>
-    <xsl:import href="aspect/citations/search-citation-export.xsl"/>
-    <xsl:import href="aspect/citations/item-citation-export.xsl"/>
+    <xsl:import href="custom/aspect/citations/citation-export.xsl"/>
+    <xsl:import href="custom/aspect/citations/search-citation-export.xsl"/>
+    <xsl:import href="custom/aspect/citations/item-citation-export.xsl"/>
     <xsl:import href="custom/aspect/discovery/search-controls.xsl"/>
     <xsl:import href="custom/core/global-variables.xsl"/>
     <xsl:import href="custom/core/page-structure.xsl"/>

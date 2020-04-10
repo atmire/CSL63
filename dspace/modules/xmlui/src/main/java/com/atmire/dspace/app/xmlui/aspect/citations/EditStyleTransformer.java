@@ -60,7 +60,7 @@ public class EditStyleTransformer extends AbstractDSpaceTransformer {
 
         editStyleList.addLabel(T_add_new_style_file_label);
         editStyleList.addItem();
-        editStyleList.addItem().addXref("style/" + cslStyle.getId(), cslStyle.getCslFileName());
+        editStyleList.addItem().addXref(request.getContextPath() + "/citations/style/" + cslStyle.getId(), cslStyle.getCslFileName());
 
         Text alias = editStyleList.addItem().addText("alias");
         alias.setLabel(T_add_new_style_alias_label);

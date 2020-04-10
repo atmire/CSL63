@@ -14,7 +14,6 @@ import org.dspace.app.xmlui.wing.AttributeMap;
 import org.dspace.app.xmlui.wing.Message;
 import org.dspace.app.xmlui.wing.WingContext;
 import org.dspace.app.xmlui.wing.WingException;
-
 import org.xml.sax.ContentHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.ext.LexicalHandler;
@@ -87,6 +86,8 @@ public abstract class Field extends AbstractWingElement implements
     /** The name of the required attribute */
     public static final String A_REQUIRED = "required";
 
+    /** The name of the readonly attribute*/
+    public static final String A_READONLY = "readonly";
 
     /** The possible field types */
     public static final String TYPE_BUTTON = "button";
@@ -129,6 +130,9 @@ public abstract class Field extends AbstractWingElement implements
 
     /** Whether this field is disabled */
     protected boolean disabled;
+
+    /** Whether this field is readonly */
+    protected boolean readonly;
 
     /** Whether this field is required */
     protected boolean required;
@@ -178,10 +182,10 @@ public abstract class Field extends AbstractWingElement implements
      * @param rend
      *            (May be null) a rendering hint used to override the default
      *            display of the element.
-     * @throws org.dspace.app.xmlui.wing.WingException passed through.
+     * @throws WingException passed through.
      */
     protected Field(WingContext context, String name, String type,
-            String rend) throws WingException
+                    String rend) throws WingException
     {
         super(context);
         require(name, "The 'name' parameter is required for all fields.");
@@ -194,6 +198,7 @@ public abstract class Field extends AbstractWingElement implements
         this.name = name;
         this.type = type;
         this.disabled = false;
+        this.readonly = false;
         this.required = false;
         this.rend = rend;
     }
@@ -227,6 +232,16 @@ public abstract class Field extends AbstractWingElement implements
     public void setDisabled()
     {
         this.disabled = true;
+    }
+
+    /**
+     * Set this field to either be readonly or not as determined by the
+     * readonly parameter.
+     *
+     * @param readonly Determine if the field is read only or not.
+     */
+    public void setReadonly(boolean readonly) {
+        this.readonly = readonly;
     }
 
     /**
@@ -307,7 +322,7 @@ public abstract class Field extends AbstractWingElement implements
      * select vs. suggest.  Value must match one of the PRESENTATIONS.
      *
      * @param value pre-determined metadata field key
-     * @throws org.dspace.app.xmlui.wing.WingException passed through.
+     * @throws WingException passed through.
      */
     public void setChoicesPresentation(String value)
         throws WingException
@@ -339,7 +354,7 @@ public abstract class Field extends AbstractWingElement implements
      * this field.
      *
      * @return a new Help.
-     * @throws org.dspace.app.xmlui.wing.WingException passed through.
+     * @throws WingException passed through.
      */
     public Help setHelp() throws WingException
     {
@@ -354,14 +369,14 @@ public abstract class Field extends AbstractWingElement implements
      * @param characters
      *            (May be null) Direct content or a dictionary tag to be
      *            inserted into the element.
-     * @throws org.dspace.app.xmlui.wing.WingException passed through.
+     * @throws WingException passed through.
      */
     public void setHelp(String characters) throws WingException
     {
         this.help = new Help(context);
         this.help.addContent(characters);
     }
-    
+
     /**
      * The help element provides help instructions to assist the user in using
      * this field.
@@ -369,7 +384,7 @@ public abstract class Field extends AbstractWingElement implements
      * @param message
      *            (Required) A key into the i18n catalogue for translation into
      *            the user's preferred language.
-     * @throws org.dspace.app.xmlui.wing.WingException passed through.
+     * @throws WingException passed through.
      */
     public void setHelp(Message message) throws WingException
     {
@@ -387,7 +402,7 @@ public abstract class Field extends AbstractWingElement implements
      * assistance to the user in correcting the problem.
      *
      * @return the new Error.
-     * @throws org.dspace.app.xmlui.wing.WingException passed through.
+     * @throws WingException passed through.
      */
     public Error addError() throws WingException
     {
@@ -404,7 +419,7 @@ public abstract class Field extends AbstractWingElement implements
      * @param characters
      *            (May be null) Direct content or a dictionary tag to be
      *            inserted into the element.
-     * @throws org.dspace.app.xmlui.wing.WingException passed through.
+     * @throws WingException passed through.
      */
     public void addError(String characters) throws WingException
     {
@@ -421,7 +436,7 @@ public abstract class Field extends AbstractWingElement implements
      * @param message
      *            (Required) A key into the i18n catalogue for translation into
      *            the user's preferred language.
-     * @throws org.dspace.app.xmlui.wing.WingException passed through.
+     * @throws WingException passed through.
      */
     public void addError(Message message) throws WingException
     {
@@ -429,7 +444,7 @@ public abstract class Field extends AbstractWingElement implements
         error.addContent(message);
         errors.add(error);
     }
-    
+
     /** ******************************************************************** */
     /** Label * */
     /** ******************************************************************** */
@@ -439,7 +454,7 @@ public abstract class Field extends AbstractWingElement implements
      * this field.
      *
      * @return the new Label.
-     * @throws org.dspace.app.xmlui.wing.WingException passed through.
+     * @throws WingException passed through.
      */
     public Label setLabel() throws WingException
     {
@@ -454,14 +469,14 @@ public abstract class Field extends AbstractWingElement implements
      * @param characters
      *            (May be null) Direct content or a dictionary tag to be
      *            inserted into the element.
-     * @throws org.dspace.app.xmlui.wing.WingException passed through.
+     * @throws WingException passed through.
      */
     public void setLabel(String characters) throws WingException
     {
         this.label = new Label(context,null,null);
         this.label.addContent(characters);
     }
-    
+
     /**
      * The help element provides help instructions to assist the user in using
      * this field.
@@ -469,15 +484,15 @@ public abstract class Field extends AbstractWingElement implements
      * @param message
      *            (Required) A key into the i18n catalogue for translation into
      *            the user's preferred language.
-     * @throws org.dspace.app.xmlui.wing.WingException passed through.
+     * @throws WingException passed through.
      */
     public void setLabel(Message message) throws WingException
     {
         this.label = new Label(context,null,null);
         this.label.addContent(message);
     }
-    
-    
+
+
     /**
      * Private function to remove all values of a particular type.
      *
@@ -515,7 +530,7 @@ public abstract class Field extends AbstractWingElement implements
      * @param namespaces
      *            (Required) SAX Helper class to keep track of namespaces able
      *            to determine the correct prefix for a given namespace URI.
-     * @throws org.xml.sax.SAXException passed through.
+     * @throws SAXException passed through.
      */
     @Override
     public void toSAX(ContentHandler contentHandler,
@@ -530,6 +545,9 @@ public abstract class Field extends AbstractWingElement implements
         if (this.disabled)
         {
             attributes.put(A_DISABLED, this.disabled);
+        }
+        if (this.readonly) {
+            attributes.put(A_READONLY, this.readonly);
         }
         if (this.required)
         {

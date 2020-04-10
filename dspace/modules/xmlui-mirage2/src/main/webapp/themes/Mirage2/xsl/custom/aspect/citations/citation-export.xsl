@@ -62,7 +62,7 @@
         </li>
     </xsl:template>
 
-        <xsl:template name="citation-help-modal">
+    <xsl:template name="citation-help-modal">
         <div class="modal fade" id="citationHelpModal" tabindex="-1" role="dialog" aria-labelledby="citationHelpModal">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -107,6 +107,14 @@
                 </div>
             </div>
         </div>
+    </xsl:template>
+
+    <xsl:template match="dri:figure[contains(@rend, 'glyphicon')]">
+        <span>
+            <xsl:attribute name="class">
+                <xsl:value-of select="@rend"></xsl:value-of>
+            </xsl:attribute>
+        </span>
     </xsl:template>
 
 

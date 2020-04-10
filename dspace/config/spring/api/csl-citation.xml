@@ -4,34 +4,103 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
     default-lazy-init="true">
 
-    <bean id="DSpaceListItemDataProvider" class="com.atmire.csl.CustomDSpaceListItemDataProvider" scope="prototype">
+    <bean id="DSpaceListItemDataProvider" class="com.atmire.csl.DSpaceListItemDataProvider" scope="prototype">
         <property name="CSLTypeMap">
             <util:map id="CSLTypeMap">
-                <entry key="Journal article" value="#{ T(de.undercouch.citeproc.csl.CSLType).ARTICLE_JOURNAL}"/>
+                <entry key="Article" value="#{ T(de.undercouch.citeproc.csl.CSLType).ARTICLE}"/>
                 <entry key="Book" value="#{ T(de.undercouch.citeproc.csl.CSLType).BOOK}"/>
                 <entry key="Book chapter" value="#{ T(de.undercouch.citeproc.csl.CSLType).CHAPTER}"/>
-                <entry key="Conference output" value="#{ T(de.undercouch.citeproc.csl.CSLType).PAPER_CONFERENCE}"/>
                 <entry key="Patent" value="#{ T(de.undercouch.citeproc.csl.CSLType).PATENT}"/>
-                <entry key="Other scientific communication" value="#{ T(de.undercouch.citeproc.csl.CSLType).PERSONAL_COMMUNICATION}"/>
-                <entry key="Report" value="#{ T(de.undercouch.citeproc.csl.CSLType).REPORT}"/>
-                <entry key="Working paper - Preprint" value="#{ T(de.undercouch.citeproc.csl.CSLType).REVIEW}"/>
+                <entry key="Technical Report" value="#{ T(de.undercouch.citeproc.csl.CSLType).REPORT}"/>
                 <entry key="Thesis" value="#{ T(de.undercouch.citeproc.csl.CSLType).THESIS}"/>
+                <entry key="Dataset" value="#{ T(de.undercouch.citeproc.csl.CSLType).DATASET}"/>
+                <entry key="Image" value="#{ T(de.undercouch.citeproc.csl.CSLType).FIGURE}"/>
+                <entry key="Image, 3-D" value="#{ T(de.undercouch.citeproc.csl.CSLType).FIGURE}"/>
+                <entry key="Map" value="#{ T(de.undercouch.citeproc.csl.CSLType).MAP}"/>
+                <entry key="Musical Score" value="#{ T(de.undercouch.citeproc.csl.CSLType).MUSICAL_SCORE}"/>
+                <entry key="Recording, acoustical" value="#{ T(de.undercouch.citeproc.csl.CSLType).MUSICAL_SCORE}"/>
+                <entry key="Recording, musical" value="#{ T(de.undercouch.citeproc.csl.CSLType).MUSICAL_SCORE}"/>
+                <entry key="Recording, oral" value="#{ T(de.undercouch.citeproc.csl.CSLType).MUSICAL_SCORE}"/>
+                <entry key="Video" value="#{ T(de.undercouch.citeproc.csl.CSLType).MOTION_PICTURE}"/>
             </util:map>
         </property>
-        <property name="abstrct" value="dc.description.abstractEn"/>
-        <property name="DOI" value="dc.identifier.doi"/>
+        <property name="abstrct" value="dc.description.abstract"/>
         <property name="genre" value="dc.type"/>
         <property name="ISBN" value="dc.identifier.isbn"/>
         <property name="ISSN" value="dc.identifier.issn"/>
         <property name="keyword" value="dc.subject.*"/>
-        <property name="note" value="dc.subject.jel"/>
-        <property name="PMID" value="dc.identifier.pubmed"/>
         <property name="publisher" value="dc.publisher"/>
-        <property name="publisherPlace" value="dc.publisher.location"/>
         <property name="title" value="dc.title.en"/>
         <property name="URL" value="dc.identifier.uri"/>
         <property name="issued" value="dc.date.issued"/>
-<!--        <property name="author" value="dc.contributor.author"/>-->
+        <property name="author" value="dc.contributor.author"/>
         <property name="editor" value="dc.contributor.editor"/>
+<!--        <property name="DOI" value=""/>-->
+<!--        <property name="note" value=""/>-->
+<!--        <property name="PMID" value=""/>-->
+<!--        <property name="publisherPlace" value=""/>-->
+<!--        <property name="id" value=""/>-->
+<!--        <property name="type" value=""/>-->
+<!--        <property name="categories" value=""/>-->
+<!--        <property name="language" value=""/>-->
+<!--        <property name="journalAbbreviation" value=""/>-->
+<!--        <property name="shortTitle" value=""/>-->
+<!--        <property name="collectionEditor" value=""/>-->
+<!--        <property name="composer" value=""/>-->
+<!--        <property name="containerAuthor" value=""/>-->
+<!--        <property name="director" value=""/>-->
+<!--        <property name="editorialDirector" value=""/>-->
+<!--        <property name="interviewer" value=""/>-->
+<!--        <property name="illustrator" value=""/>-->
+<!--        <property name="originalAuthor" value=""/>-->
+<!--        <property name="recipient" value=""/>-->
+<!--        <property name="reviewedAuthor" value=""/>-->
+<!--        <property name="translator" value=""/>-->
+<!--        <property name="accessed" value=""/>-->
+<!--        <property name="container" value=""/>-->
+<!--        <property name="eventDate" value=""/>-->
+<!--        <property name="originalDate" value=""/>-->
+<!--        <property name="submitted" value=""/>-->
+<!--        <property name="annote" value=""/>-->
+<!--        <property name="archive" value=""/>-->
+<!--        <property name="archiveLocation" value=""/>-->
+<!--        <property name="archivePlace" value=""/>-->
+<!--        <property name="authority" value=""/>-->
+<!--        <property name="callNumber" value=""/>-->
+<!--        <property name="chapterNumber" value=""/>-->
+<!--        <property name="citationNumber" value=""/>-->
+<!--        <property name="citationLabel" value=""/>-->
+<!--        <property name="collectionNumber" value=""/>-->
+<!--        <property name="collectionTitle" value=""/>-->
+<!--        <property name="containerTitle" value=""/>-->
+<!--        <property name="containerTitleShort" value=""/>-->
+<!--        <property name="dimensions" value=""/>-->
+<!--        <property name="edition" value=""/>-->
+<!--        <property name="event" value=""/>-->
+<!--        <property name="eventPlace" value=""/>-->
+<!--        <property name="firstReferenceNoteNumber" value=""/>-->
+<!--        <property name="issue" value=""/>-->
+<!--        <property name="jurisdiction" value=""/>-->
+<!--        <property name="locator" value=""/>-->
+<!--        <property name="medium" value=""/>-->
+<!--        <property name="number" value=""/>-->
+<!--        <property name="numberOfPages" value=""/>-->
+<!--        <property name="numberOfVolumes" value=""/>-->
+<!--        <property name="originalPublisher" value=""/>-->
+<!--        <property name="originalPublisherPlace" value=""/>-->
+<!--        <property name="originalTitle" value=""/>-->
+<!--        <property name="page" value=""/>-->
+<!--        <property name="pageFirst" value=""/>-->
+<!--        <property name="PMCID" value=""/>-->
+<!--        <property name="references" value=""/>-->
+<!--        <property name="reviewedTitle" value=""/>-->
+<!--        <property name="scale" value=""/>-->
+<!--        <property name="section" value=""/>-->
+<!--        <property name="source" value=""/>-->
+<!--        <property name="status" value=""/>-->
+<!--        <property name="titleShort" value=""/>-->
+<!--        <property name="version" value=""/>-->
+<!--        <property name="volume" value=""/>-->
+<!--        <property name="yearSuffix" value=""/>-->
     </bean>
 </beans>
