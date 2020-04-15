@@ -30,7 +30,7 @@
         <property name="ISSN" value="dc.identifier.issn"/>
         <property name="keyword" value="dc.subject.*"/>
         <property name="publisher" value="dc.publisher"/>
-        <property name="title" value="dc.title.en"/>
+        <property name="title" value="dc.title"/>
         <property name="URL" value="dc.identifier.uri"/>
         <property name="issued" value="dc.date.issued"/>
         <property name="author" value="dc.contributor.author"/>
