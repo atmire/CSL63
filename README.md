@@ -1,69 +1,133 @@
+- [Introduction](#Introduction)
+- [Patch Installation Procedures](#Patch-installation-procedures)
+	- [Prerequisites](#Prerequisites)
+	- [Obtaining a recent patch file](#Obtaining-recent-patch)
+	- [Patch installation](#Patch-installation)
+		- [1. Go to the DSpace Source directory.](#goto-DSpace-Source)
+		- [2. Run the Git command to check whether the patch can be correctly applied.](#Run-git-command)
+		- [3. Apply the patch](#Apply-patch)
+		- [4. Rebuild and redeploy your repository](#Rebuild-redeploy)
+		- [5. Restart your tomcat](#Restart-tomcat)
+	- [Configure the metadata mapping](#Metadata-mapping)
+	- [CSL management](#CSL-management)
+- [Verification](#Verification)
 
-# DSpace
+# Introduction <a name="Introduction"></a>
 
-[![Build Status](https://travis-ci.org/DSpace/DSpace.png?branch=master)](https://travis-ci.org/DSpace/DSpace)
+# Patch Installation Procedures <a name="Patch-installation-procedures"></a>
 
-[DSpace Documentation](https://wiki.duraspace.org/display/DSDOC/) | 
-[DSpace Releases](https://github.com/DSpace/DSpace/releases) |
-[DSpace Wiki](https://wiki.duraspace.org/display/DSPACE/Home) | 
-[Support](https://wiki.duraspace.org/display/DSPACE/Support)
+## Prerequisites  <a name="Prerequisites"></a>
 
-DSpace open source software is a turnkey repository application used by more than 
-1000+ organizations and institutions worldwide to provide durable access to digital resources.
-For more information, visit http://www.dspace.org/
+The CSL changes have been released as a "patch" for DSpace as this allows for the easiest installation process of the incremental codebase.
 
-## Downloads
+**__Important note__**: Below, we will explain you how to apply the patch to your existing installation. This will affect your source code. Before applying a patch, it is **always** recommended to create backup of your DSpace source code.
 
-The latest release of DSpace can be downloaded from the [DSpace website](http://www.dspace.org/latest-release/) or from [GitHub](https://github.com/DSpace/DSpace/releases).
+In order to apply the patch, you will need to locate the **DSpace source code** on your server. That source code directory contains a directory _dspace_, as well as the following files:  _LICENSE_,  _NOTICE_ ,  _README_ , ....
 
-Past releases are all available via GitHub at https://github.com/DSpace/DSpace/releases
+For every release of DSpace, generally two release packages are available. One package has "src" in its name and the other one doesn't. The difference is that the release labelled "src" contains ALL of the DSpace source code, while the other release retrieves precompiled packages for specific DSpace artifacts from maven central. **The CSL changes were designed to work on both "src" and other release packages of DSpace**. 
 
-## Documentation / Installation
+To be able to install the patch, you will need the following prerequisites:
 
-Documentation for each release may be viewed online or downloaded via our [Documentation Wiki](https://wiki.duraspace.org/display/DSDOC/). 
+* A running DSpace 6.3 instance. 
+* Git should be installed on the machine. The patch will be applied using several git commands as indicated in the next section. 
 
-The latest DSpace Installation instructions are available at:
-https://wiki.duraspace.org/display/DSDOC6x/Installing+DSpace
+## Obtaining a recent patch file <a name="Obtaining-recent-patch"></a>
 
-Please be aware that, as a Java web application, DSpace requires a database (PostgreSQL or Oracle) 
-and a servlet container (usually Tomcat) in order to function.
-More information about these and all other prerequisites can be found in the Installation instructions above.
+Atmire's modifications to a standard DSpace are tracked on Github. The newest patch can therefore be generated from git.
 
-## Contributing
+DSPACE 6.3 [https://github.com/atmire/CSL63/compare/813800ce1736ec503fdcfbee4d86de836788f87c...master.diff](https://github.com/atmire/CSL63/compare/813800ce1736ec503fdcfbee4d86de836788f87c...master.diff)
 
-DSpace is a community built and supported project. We do not have a centralized development or support team, 
-but have a dedicated group of volunteers who help us improve the software, documentation, resources, etc.
+## Patch installation <a name="Patch-installation"></a>
 
-We welcome contributions of any type. Here's a few basic guides that provide suggestions for contributing to DSpace:
-* [How to Contribute to DSpace](https://wiki.duraspace.org/display/DSPACE/How+to+Contribute+to+DSpace): How to contribute in general (via code, documentation, bug reports, expertise, etc)
-* [Code Contribution Guidelines](https://wiki.duraspace.org/display/DSPACE/Code+Contribution+Guidelines): How to give back code or contribute features, bug fixes, etc.
-* [DSpace Community Advisory Team (DCAT)](https://wiki.duraspace.org/display/cmtygp/DSpace+Community+Advisory+Team): If you are not a developer, we also have an interest group specifically for repository managers. The DCAT group meets virtually, once a month, and sends open invitations to join their meetings via the [DCAT mailing list](https://groups.google.com/d/forum/DSpaceCommunityAdvisoryTeam).
+To install the patch, the following steps will need to be performed. 
 
-We also encourage GitHub Pull Requests (PRs) at any time. Please see our [Development with Git](https://wiki.duraspace.org/display/DSPACE/Development+with+Git) guide for more info.
+### 1. Go to the DSpace Source directory. <a name="goto-DSpace-Source"></a>
 
-In addition, a listing of all known contributors to DSpace software can be
-found online at: https://wiki.duraspace.org/display/DSPACE/DSpaceContributors
+This folder should have a structure similar to:   
+dspace  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   modules  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    config  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    ...  
+pom.xml
 
-## Getting Help
 
-DSpace provides public mailing lists where you can post questions or raise topics for discussion.
-We welcome everyone to participate in these lists:
+### 2. Run the Git command to check whether the patch can be correctly applied. <a name="Run-git-command"></a>
 
-* [dspace-community@googlegroups.com](https://groups.google.com/d/forum/dspace-community) : General discussion about DSpace platform, announcements, sharing of best practices
-* [dspace-tech@googlegroups.com](https://groups.google.com/d/forum/dspace-tech) : Technical support mailing list. See also our guide for [How to troubleshoot an error](https://wiki.duraspace.org/display/DSPACE/Troubleshoot+an+error).
-* [dspace-devel@googlegroups.com](https://groups.google.com/d/forum/dspace-devel) : Developers / Development mailing list
+Run the following command where <patch file> needs to be replaced with the name of the patch:
 
-Additional support options are listed at https://wiki.duraspace.org/display/DSPACE/Support
+``` 
+git apply --check <patch file>
+```
 
-DSpace also has an active service provider network. If you'd rather hire a service provider to 
-install, upgrade, customize or host DSpace, then we recommend getting in touch with one of our 
-[Registered Service Providers](http://www.dspace.org/service-providers).
+This command will return whether it is possible to apply the patch to your installation. This should pose no problems in case the DSpace is not customized or in case not much customizations are present.   
+In case, the check is successful, the patch can be installed without any problems. Otherwise, you will have to merge some changes manually.
 
-## Issue Tracker
+### 3. Apply the patch <a name="Apply-patch"></a>
 
-The DSpace Issue Tracker can be found at: https://jira.duraspace.org/projects/DS/summary
+To apply the patch, the following command should be run where <patch file> is replaced with the name of the patch file. 
 
-## License
+``` 
+git apply --whitespace=nowarn --reject <patch file>
+```
 
-DSpace source code is freely available under a standard [BSD 3-Clause license](https://opensource.org/licenses/BSD-3-Clause).
-The full license is available at http://www.dspace.org/license/
+This command will tell git to apply the patch and ignore unharmful whitespace issues. The `--reject` flag instructs the command to continue when conflicts are encountered and saves the corresponding code hunks to a `.rej` file so you can review and apply them manually later on. Before continuing to the next step, you have to resolve all merge conflicts indicated by the `.rej` files. After solving the merge conflicts, remove all the `.rej` files.
+
+### 4. Rebuild and redeploy your repository <a name="Rebuild-redeploy"></a>
+
+After the patch has been applied, the repository will need to be rebuild.   
+DSpace repositories are typically built using the Maven and deployed using Ant. 
+
+### 5. Restart your tomcat <a name="Restart-tomcat"></a>
+
+After the repository has been rebuild and redeployed, the tomcat will need to be restarted to bring the changes to production.
+
+## Configure the metadata mapping <a name="Metadata-mapping"></a>
+
+The configuration of this functionality is located in the dspace/config/spring/api/csl-citation.xml file. This contains a bean with id DSpaceListItemDataProvider which will define how the citations are made. To configure this, we'll need to add properties with a certain value.
+
+The property name that should be defined is the type of field within the citation that you want to see filled in, the way how this is filled in is determined by the citation file that the user selects. The value of this field is defined by the config namely by entering a metadata field in the value of the property. This metadata field will be retrieved for the items for which a citation is created, the value of this metadata field will be filled in into the citation's corresponding property.
+
+For example if we want to fill in the title for a citation, we define a property with name 'title' and value 'dc.title'. This will fill in the title in the citation with the value retrieved in the dc.title metadata field for an item. Example properties with all possible names are provided in comments.
+
+The available export formats are configured in the dspace/config/spring/xmlui/csl-citation-formats.xml file. A list of available formats is specified, and for each format, the format name and the file extension is specified. The label for these formats can be found in the messages file using `xmlui.citation.format.` followed by the format.
+Example: `<message key="xmlui.citation.format.htmlFormat">HTML</message>`
+
+## CSL management <a name="CSL-management"></a>
+
+A page has been added at "/citations" to manage the available citation formats. This page is available for any logged in user.
+
+The page displays a table of all citations visible to that user, with the possibility to view, edit or delete them. It also contains a form to upload a new citation format. The new citation can be either global (visible to all users) or personal (only visible to the current user and to admins).
+
+Only admins can create global citation formats, regular users won't see this checkbox.
+
+# Verification <a name="Verification"></a>
+
+First and foremost, it should be checked that it's not possible for anonymous users to configure this feature. Browse to your DSpace repository, make sure you're logged out and type `citations` at the end of the URL in the address bar. The address in the address bar should look like `https://dspace.example.edu/citations`. When this page is requested, the browser should be redirected to the login page.
+
+For some of the following tests you will need to be logged in as a submitter, and for the rest you will need to login as an administrator. For all of the following tests you should start by browsing to your repository's home page. Then in the sidebar, under "my account", follow the new "Citations format" link.
+
+| Logged in user | Test description |
+| -------------- | ---------------- |
+| Submitter | Click the add new style button. An error notification should be shown because you didn't select a file. |
+| Submitter | Choose a file and click the "add new style" button. A new style should be visible in the overview table. It should not be marked as global. The alias should be the filename. |
+| Submitter | Choose a file, enter an alias and click the "add new style" button. A new style with the given alias should be visible in the overview table. It should not be marked as global. |
+| Administrator | Just visit the citations page. The styles submitted by the other user should no longer be visible. |
+| Administrator | Choose a file, enter an alias and click the "add new style" button. A new style with the given alias should be visible in the overview table. It should not be marked as global. |
+| Administrator | Choose a file, enter an alias, check the global checkbox and click the "add new style" button. A new style with the given alias should be visible in the overview table. It should be marked as global. |
+| Administrator | Choose a file, enter an alias for which a personal style already exists and click the "add new style" button. An error notification should be shown because a personal style with this alias already exists. |
+| Administrator | Choose a file, enter an alias for which a global style already exists, check the global checkbox and click the "add new style" button. An error notification should be shown because a global style with this alias already exists. |
+| Submitter | Select some personal styles and click the "delete styles" button. A success notification should be shown. The selected styles should be deleted. |
+| Administrator | Select some personal and global styles and click the "delete styles" button. A success notification should be shown. The selected styles should be deleted. |
+| Submitter | Click the edit button next to a personal style. An edit page should be shown, with the style filename as a link, the style alias as a textbox. |
+| Submitter | Click the edit button next to a personal style. Click the style filename link. The style file should be downloaded. |
+| Submitter | Click the edit button next to a personal style. Click the cancel button. The citation formats overview page should be shown. |
+| Submitter | Click the edit button next to a personal style. Click the save button. The citation formats overview page should be shown. |
+| Submitter | Click the edit button next to a personal style. Alter the alias and click the save button. The citation formats overview page should be shown. The alias should be changed. |
+| Submitter | Click the edit button next to a personal style. Enter an alias for which a personal style already exists. Click the save button. The citation formats overview page should be shown. An error notification should be shown because a personal style with this alias already exists. |
+| Administrator | Click the edit button next to a personal style. An edit page should be shown, with the style filename as a link, the style alias as a textbox. A checkbox should be shown but not checked. |
+| Administrator | Click the edit button next to a global style. An edit page should be shown, with the style filename as a link, the style alias as a textbox. A checkbox should be shown and selected. Click the save button. |
+| Administrator | Click the edit button next to a personal style. Check the global checkbox and click the save button. The style should now be global. |
+| Administrator | Just visit the citations page. You should see an overview of your available citation styles. No checkboxes or edit buttons should be disabled. There should be a form to add a new style: a file chooser, a field for an alias and a checkbox to make the style global. |
+| Submitter | Just visit the citations page. You should see an overview of your available citation styles. The checkboxes for the global styles should be disabled, the edit buttons for these styles should be disabled as well. There should be a form to add a new style: a file chooser and a field to enter an alias. |
+| Administrator | Select all styles and click the "delete styles" button. The overview table should be gone. |
+| Administrator | Attempt to upload a file that doesn't have the .csl extension An error should be displayed that only csl files are supported. |
