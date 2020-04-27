@@ -10,6 +10,7 @@
 		- [5. Restart your tomcat](#Restart-tomcat)
 	- [Configure the metadata mapping](#Metadata-mapping)
 	- [CSL management](#CSL-management)
+	- [Exporting citations](#Exporting-citations)
 - [Verification](#Verification)
 
 # Introduction <a name="Introduction"></a>
@@ -92,17 +93,59 @@ For example if we want to fill in the title for a citation, we define a property
 The available export formats are configured in the dspace/config/spring/xmlui/csl-citation-formats.xml file. A list of available formats is specified, and for each format, the format name and the file extension is specified. The label for these formats can be found in the messages file using `xmlui.citation.format.` followed by the format.
 Example: `<message key="xmlui.citation.format.htmlFormat">HTML</message>`
 
+Currently, the following formats are configured:
+```
+       <util:list id="citationFormatList" value-type="com.atmire.app.xmlui.aspect.citations.CitationFormat">
+           <ref bean="htmlFormat"/>
+           <ref bean="textFormat"/>
+           <ref bean="asciidocFormat"/>
+           <ref bean="foFormat"/>
+           <ref bean="rtfFormat"/>
+       </util:list>
+   
+       <bean id="htmlFormat" class="com.atmire.app.xmlui.aspect.citations.CitationFormat">
+           <property name="format" value="html"/>
+           <property name="fileExtension" value="html"/>
+       </bean>
+   
+       <bean id="textFormat" class="com.atmire.app.xmlui.aspect.citations.CitationFormat">
+           <property name="format" value="text"/>
+           <property name="fileExtension" value="txt"/>
+       </bean>
+   
+       <bean id="asciidocFormat" class="com.atmire.app.xmlui.aspect.citations.CitationFormat">
+           <property name="format" value="asciidoc"/>
+           <property name="fileExtension" value="txt"/>
+       </bean>
+   
+       <bean id="foFormat" class="com.atmire.app.xmlui.aspect.citations.CitationFormat">
+           <property name="format" value="fo"/>
+           <property name="fileExtension" value="fo"/>
+       </bean>
+   
+       <bean id="rtfFormat" class="com.atmire.app.xmlui.aspect.citations.CitationFormat">
+           <property name="format" value="rtf"/>
+           <property name="fileExtension" value="rtf"/>
+       </bean>
+```
+
 ## CSL management <a name="CSL-management"></a>
 
-A page has been added at "/citations" to manage the available citation formats. This page is available for any logged in user.
+A page has been added at "/citations" to manage the available citation formats. This page is available for any logged in user, and a link to it has been added in the sidebar under "my account".
 
 The page displays a table of all citations visible to that user, with the possibility to view, edit or delete them. It also contains a form to upload a new citation format. The new citation can be either global (visible to all users) or personal (only visible to the current user and to admins).
 
 Only admins can create global citation formats, regular users won't see this checkbox.
 
+Styles can be downloaded from https://github.com/citation-style-language/styles
+
+## Exporting citations <a name="Exporting-citations"></a>
+
+A button named "Citations" has been added to the top of the item view page and the search results list. Users can export citations by clicking that button and choosing their desired style. Logged out users will only see the global styles, logged in users will also see their personal styles. After selecting the desired style, the user needs to select his desired format in the dialog.
+
 # Verification <a name="Verification"></a>
 
-First and foremost, it should be checked that it's not possible for anonymous users to configure this feature. Browse to your DSpace repository, make sure you're logged out and type `citations` at the end of the URL in the address bar. The address in the address bar should look like `https://dspace.example.edu/citations`. When this page is requested, the browser should be redirected to the login page.
+Browse to your DSpace repository, make sure you're logged in and navigate to the "Citations format" page from the sidebar under "my account". You should see a page with a form to add a new style.
 
 For some of the following tests you will need to be logged in as a submitter, and for the rest you will need to login as an administrator. For all of the following tests you should start by browsing to your repository's home page. Then in the sidebar, under "my account", follow the new "Citations format" link.
 
