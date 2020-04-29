@@ -86,8 +86,8 @@ public abstract class Field extends AbstractWingElement implements
 
     /** The name of the required attribute */
     public static final String A_REQUIRED = "required";
-    
-    
+
+
     /** The possible field types */
     public static final String TYPE_BUTTON = "button";
 
