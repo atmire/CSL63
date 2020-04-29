@@ -49,6 +49,4 @@
    <i18n:message key="xmlui.citations.export.global-citations.head">Global styles</i18n:message>
    <i18n:message key="xmlui.dri2xhtml.METS-1.0.citations">Citations</i18n:message>
    <i18n:message key="xmlui.export.help">Help</i18n:message>
-   <i18n:message key="xmlui.export.help.bubble-text"><p>The export option will allow you to export the current search results of the entered query to a file. Different formats are available for download. To export the items, click on the button corresponding with the preferred download format.</p><p>A logged-in user can export up to 15000 items. If you're not logged in, you can export no more than 500 items.</p><p>To select a subset of the search results, click "Selective Export" button and make a selection of the items you want to export. The amount of items that can be exported at once is similarly restricted as the full export.</p><p>After making a selection, click one of the export format buttons. The amount of items that will be exported is indicated in the bubble next to export format.</p></i18n:message>
-   <i18n:message key="xmlui.export.help.bubble-title">Export search results</i18n:message>
 </i18n:catalogue>
