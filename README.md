@@ -90,6 +90,10 @@ The property name that should be defined is the type of field within the citatio
 
 For example if we want to fill in the title for a citation, we define a property with name 'title' and value 'dc.title'. This will fill in the title in the citation with the value retrieved in the dc.title metadata field for an item. Example properties with all possible names are provided in comments.
 
+The property with the name "type" is special. The value of the metadata field referenced by this property is used to determine the format of the citation. To make a link between the custom types defined in your repository, a mapping is made between your repository's types, and the types supported by CSL. This mapping is made in the `<util:map id="CSLTypeMap">...</util:map>` element of the same configuration file. This element contains entries, for which the keys are the your repository's types, and the values are the corresponding CSL supported types. Take for example `<entry key="Article" value="#{ T(de.undercouch.citeproc.csl.CSLType).ARTICLE}"/>`. Here, the "ARTICLE" is the type as supported by CSL.
+
+The limited list of possible values is: `ARTICLE, ARTICLE_JOURNAL, ARTICLE_MAGAZINE, ARTICLE_NEWSPAPER, BILL, BOOK, BROADCAST, CHAPTER, DATASET, ENTRY, ENTRY_DICTIONARY, ENTRY_ENCYCLOPEDIA, FIGURE, GRAPHIC, INTERVIEW, LEGAL_CASE, LEGISLATION, MANUSCRIPT, MAP, MOTION_PICTURE, MUSICAL_SCORE, PAMPHLET, PAPER_CONFERENCE, PATENT, PERSONAL_COMMUNICATION, POST, POST_WEBLOG, REPORT, REVIEW, REVIEW_BOOK, SONG, SPEECH, THESIS, TREATY, WEBPAGE`
+
 The available export formats are configured in the dspace/config/spring/xmlui/csl-citation-formats.xml file. A list of available formats is specified, and for each format, the format name and the file extension is specified. The label for these formats can be found in the messages file using `xmlui.citation.format.` followed by the format.
 Example: `<message key="xmlui.citation.format.htmlFormat">HTML</message>`
 
