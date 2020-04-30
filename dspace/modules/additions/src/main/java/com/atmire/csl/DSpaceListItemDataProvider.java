@@ -128,7 +128,7 @@ public class DSpaceListItemDataProvider extends ListItemDataProvider {
     protected CSLItemDataBuilder handleStringFields(Item item, CSLItemDataBuilder cslItemDataBuilder)
         throws ParseException {
         if (StringUtils.isNotBlank(type)) {
-            CSLType cslType = CSLTypeMap.get(type);
+            CSLType cslType = CSLTypeMap.get(getMetadataFirstValueFromItem(item, type));
             cslItemDataBuilder = cslItemDataBuilder.type(cslType);
         }
 
