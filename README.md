@@ -1,5 +1,5 @@
 - [Introduction](#Introduction)
-- [Acknowledgement](#Acknowledgement)
+- [Acknowledgements](#Acknowledgements)
 - [Features](#Features)
 	- [CSL styles management](#CSL-management)
 	- [Citations export](#Citations-export)
@@ -20,7 +20,7 @@
 The CSL patch adds support for CSL exports in DSpace (designed for DSpace 6, developed and tested against DSpace 6.3).
 For more information about the Citation Style Language, please refer to https://citationstyles.org/.
 
-# Acknowledgement <a name="Acknowledgement"></a>
+# Acknowledgements <a name="Acknowledgements"></a>
 
 The CSL patch has been funded by the University of Bordeaux (www.u-bordeaux.com) and developed by Atmire (https://www.atmire.com/).
 
