@@ -13,7 +13,7 @@
 		- [4. Rebuild and redeploy your repository](#Rebuild-redeploy)
 		- [5. Restart your tomcat](#Restart-tomcat)
 	- [Configure the metadata mapping](#Metadata-mapping)
-- [Verification](#Verification)
+- [Testing](#Testing)
 
 # Introduction <a name="Introduction"></a>
 
@@ -121,9 +121,13 @@ After the repository has been rebuild and redeployed, the tomcat will need to be
 
 ## Configure the metadata mapping <a name="Metadata-mapping"></a>
 
-The configuration of this functionality is located in the dspace/config/spring/api/csl-citation.xml file. This contains a bean with id DSpaceListItemDataProvider which will define how the citations are made. To configure this, we'll need to add properties with a certain value.
+Configuring Metadata mapping is crucial in order for the metadata fields of your repository to be correctly mapped to the corresponding fields within the citation styles, especially if a custom metadata schema or custom metadata fields have been defined on your repository.
 
-The property name that should be defined is the type of field within the citation that you want to see filled in, the way how this is filled in is determined by the citation file that the user selects. The value of this field is defined by the config namely by entering a metadata field in the value of the property. This metadata field will be retrieved for the items for which a citation is created, the value of this metadata field will be filled in into the citation's corresponding property.
+The configuration of the metadata mapping is located in the dspace/config/spring/api/csl-citation.xml file.
+Hereunder, you will find an example mapping for the metadata "Title":
+        <property name="title" value="dc.title"/>
+
+The property name that should be defined is the type of field within the citation that you want to see filled in, the way how this is filled in is determined by the citation file that the user selects. The value of this field is defined by the config namely by entering a metadata field in the value of the property. This metadata field will be retrieved for the items for which a citation is created, the value of this metadata field will be filled in into the corresponding property of the citation.
 
 For example if we want to fill in the title for a citation, we define a property with name 'title' and value 'dc.title'. This will fill in the title in the citation with the value retrieved in the dc.title metadata field for an item. Example properties with all possible names are provided in comments.
 
@@ -170,9 +174,9 @@ Currently, the following formats are configured:
        </bean>
 ```
 
-# Verification <a name="Verification"></a>
+# Testing <a name="Testing"></a>
 
-Browse to your DSpace repository, make sure you're logged in and navigate to the "Citations format" page from the sidebar under "my account". You should see a page with a form to add a new style.
+Open your DSpace repository, make sure you're logged in and navigate to the "Citations format" page from the sidebar under "my account". You should see a page with a form to add a new style.
 
 For some of the following tests you will need to be logged in as a submitter, and for the rest you will need to login as an administrator. For all of the following tests you should start by browsing to your repository's home page. Then in the sidebar, under "my account", follow the new "Citations format" link.
 
