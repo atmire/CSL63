@@ -2,7 +2,7 @@
 - [Acknowledgement](#Acknowledgement)
 - [Features](#Features)
 	- [CSL styles management](#CSL-management)
-	- [Exporting citations](#Exporting-citations)
+	- [Citations export](#Citations-export)
 - [Patch Installation Procedures](#Patch-installation-procedures)
 	- [Prerequisites](#Prerequisites)
 	- [Obtaining a recent patch file](#Obtaining-recent-patch)
@@ -32,15 +32,22 @@ A page has been added at "/citations" to manage the available citation styles. T
 
 The page displays a table of all citations visible to that user, with the possibility to view, edit or delete them. It also contains a form to upload a new citation style. The new style can be either global (visible to all users) or personal (only visible to the current user and to admins).
 
-![Alt text](/CSL_Styles_Management.png?raw=true)
+![Image not loading](/CSL_Styles_Management.png?raw=true)
 
 Only admins can create global citation styles, regular users won't see this checkbox.
 
 Styles can be downloaded from https://github.com/citation-style-language/styles
 
-## Exporting citations <a name="Exporting-citations"></a>
+## Citations export <a name="Citations-export"></a>
 
-A button named "Citations" has been added to the top of the item view page and the search results list. Users can export citations by clicking that button and choosing their desired style. Logged out users will only see the global styles, logged in users will also see their personal styles. After selecting the desired style, the user needs to select his desired format in the dialog.
+As illustrated hereunder, a button named "Citations" has been added to the top of the item view page and the search results list. 
+
+![Image not loading](/Export_button.png?raw=true)
+
+Using this button, users can export citations by selecting the desired style. Logged out users will only see the global styles, logged in users will also see their personal styles. 
+After selecting the desired style, the user needs to select his desired format in the dialog.
+
+![Image not loading](/Export_formats.png?raw=true)
 
 # Patch Installation Procedures <a name="Patch-installation-procedures"></a>
 
