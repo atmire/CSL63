@@ -1,5 +1,8 @@
 - [Introduction](#Introduction)
 - [Acknowledgement](#Acknowledgement)
+- [Features](#Features)
+	- [CSL management](#CSL-management)
+	- [Exporting citations](#Exporting-citations)
 - [Patch Installation Procedures](#Patch-installation-procedures)
 	- [Prerequisites](#Prerequisites)
 	- [Obtaining a recent patch file](#Obtaining-recent-patch)
@@ -10,8 +13,6 @@
 		- [4. Rebuild and redeploy your repository](#Rebuild-redeploy)
 		- [5. Restart your tomcat](#Restart-tomcat)
 	- [Configure the metadata mapping](#Metadata-mapping)
-	- [CSL management](#CSL-management)
-	- [Exporting citations](#Exporting-citations)
 - [Verification](#Verification)
 
 # Introduction <a name="Introduction"></a>
@@ -22,6 +23,22 @@ For more information about the Citation Style Language, please refer to https://
 # Acknowledgement <a name="Acknowledgement"></a>
 
 The CSL patch has been funded by the University of Bordeaux (www.u-bordeaux.com) and developed by Atmire (https://www.atmire.com/).
+
+# Features <a name="Features"></a>
+
+## CSL management <a name="CSL-management"></a>
+
+A page has been added at "/citations" to manage the available citation formats. This page is available for any logged in user, and a link to it has been added in the sidebar under "my account".
+
+The page displays a table of all citations visible to that user, with the possibility to view, edit or delete them. It also contains a form to upload a new citation format. The new citation can be either global (visible to all users) or personal (only visible to the current user and to admins).
+
+Only admins can create global citation formats, regular users won't see this checkbox.
+
+Styles can be downloaded from https://github.com/citation-style-language/styles
+
+## Exporting citations <a name="Exporting-citations"></a>
+
+A button named "Citations" has been added to the top of the item view page and the search results list. Users can export citations by clicking that button and choosing their desired style. Logged out users will only see the global styles, logged in users will also see their personal styles. After selecting the desired style, the user needs to select his desired format in the dialog.
 
 # Patch Installation Procedures <a name="Patch-installation-procedures"></a>
 
@@ -140,20 +157,6 @@ Currently, the following formats are configured:
            <property name="fileExtension" value="rtf"/>
        </bean>
 ```
-
-## CSL management <a name="CSL-management"></a>
-
-A page has been added at "/citations" to manage the available citation formats. This page is available for any logged in user, and a link to it has been added in the sidebar under "my account".
-
-The page displays a table of all citations visible to that user, with the possibility to view, edit or delete them. It also contains a form to upload a new citation format. The new citation can be either global (visible to all users) or personal (only visible to the current user and to admins).
-
-Only admins can create global citation formats, regular users won't see this checkbox.
-
-Styles can be downloaded from https://github.com/citation-style-language/styles
-
-## Exporting citations <a name="Exporting-citations"></a>
-
-A button named "Citations" has been added to the top of the item view page and the search results list. Users can export citations by clicking that button and choosing their desired style. Logged out users will only see the global styles, logged in users will also see their personal styles. After selecting the desired style, the user needs to select his desired format in the dialog.
 
 # Verification <a name="Verification"></a>
 
