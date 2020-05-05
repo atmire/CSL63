@@ -1,4 +1,3 @@
-TEST
 - [Introduction](#Introduction)
 - [Patch Installation Procedures](#Patch-installation-procedures)
 	- [Prerequisites](#Prerequisites)
