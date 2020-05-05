@@ -1,7 +1,7 @@
 - [Introduction](#Introduction)
 - [Acknowledgement](#Acknowledgement)
 - [Features](#Features)
-	- [CSL management](#CSL-management)
+	- [CSL styles management](#CSL-management)
 	- [Exporting citations](#Exporting-citations)
 - [Patch Installation Procedures](#Patch-installation-procedures)
 	- [Prerequisites](#Prerequisites)
@@ -26,13 +26,13 @@ The CSL patch has been funded by the University of Bordeaux (www.u-bordeaux.com)
 
 # Features <a name="Features"></a>
 
-## CSL management <a name="CSL-management"></a>
+## CSL styles management <a name="CSL-management"></a>
 
-A page has been added at "/citations" to manage the available citation formats. This page is available for any logged in user, and a link to it has been added in the sidebar under "my account".
+A page has been added at "/citations" to manage the available citation styles. This page is available for any logged in user, and a link to it has been added in the sidebar under "my account".
 
-The page displays a table of all citations visible to that user, with the possibility to view, edit or delete them. It also contains a form to upload a new citation format. The new citation can be either global (visible to all users) or personal (only visible to the current user and to admins).
+The page displays a table of all citations visible to that user, with the possibility to view, edit or delete them. It also contains a form to upload a new citation style. The new style can be either global (visible to all users) or personal (only visible to the current user and to admins).
 
-Only admins can create global citation formats, regular users won't see this checkbox.
+Only admins can create global citation styles, regular users won't see this checkbox.
 
 Styles can be downloaded from https://github.com/citation-style-language/styles
 
