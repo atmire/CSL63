@@ -32,6 +32,8 @@ A page has been added at "/citations" to manage the available citation styles. T
 
 The page displays a table of all citations visible to that user, with the possibility to view, edit or delete them. It also contains a form to upload a new citation style. The new style can be either global (visible to all users) or personal (only visible to the current user and to admins).
 
+![Alt text](/CSL_Styles_Management.jpg?raw=true)
+
 Only admins can create global citation styles, regular users won't see this checkbox.
 
 Styles can be downloaded from https://github.com/citation-style-language/styles
