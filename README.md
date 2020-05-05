@@ -34,7 +34,7 @@ The page displays a table of all citations visible to that user, with the possib
 
 ![Image not loading](/CSL_Styles_Management.png?raw=true)
 
-Only admins can create global citation styles, regular users won't see this checkbox.
+Only admins can create global citation styles. The "Global" checkbox is not visible to regular users.
 
 Styles can be downloaded from https://github.com/citation-style-language/styles
 
@@ -55,11 +55,13 @@ After selecting the desired style, the user needs to select his desired format i
 
 The CSL changes have been released as a "patch" for DSpace as this allows for the easiest installation process of the incremental codebase.
 
-**__Important note__**: Below, we will explain you how to apply the patch to your existing installation. This will affect your source code. Before applying a patch, it is **always** recommended to create backup of your DSpace source code.
+**__Important note__**: Hereunder, you will find guidance on how to apply the patch to your existing installation.
+This will affect your source code. Before applying a patch, it is **always** recommended to create backup of your DSpace source code.
 
 In order to apply the patch, you will need to locate the **DSpace source code** on your server. That source code directory contains a directory _dspace_, as well as the following files:  _LICENSE_,  _NOTICE_ ,  _README_ , ....
 
-For every release of DSpace, generally two release packages are available. One package has "src" in its name and the other one doesn't. The difference is that the release labelled "src" contains ALL of the DSpace source code, while the other release retrieves precompiled packages for specific DSpace artifacts from maven central. **The CSL changes were designed to work on both "src" and other release packages of DSpace**. 
+For every release of DSpace, generally two release packages are available. One package has "src" in its name and the other one does not. The difference is that the release labelled "src" contains ALL of the DSpace source code, while the other release retrieves precompiled packages for specific DSpace artifacts from maven central. 
+**The CSL changes were designed to work on both "src" and other release packages of DSpace**. 
 
 To be able to install the patch, you will need the following prerequisites:
 
@@ -68,7 +70,8 @@ To be able to install the patch, you will need the following prerequisites:
 
 ## Obtaining a recent patch file <a name="Obtaining-recent-patch"></a>
 
-Atmire's modifications to a standard DSpace are tracked on Github. The newest patch can therefore be generated from git.
+Atmire's modifications to a standard DSpace are tracked on Github. 
+The newest patch can therefore be generated from git.
 
 DSPACE 6.3 [https://github.com/atmire/CSL63/compare/813800ce1736ec503fdcfbee4d86de836788f87c...master.diff](https://github.com/atmire/CSL63/compare/813800ce1736ec503fdcfbee4d86de836788f87c...master.diff)
 
