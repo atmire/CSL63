@@ -94,7 +94,7 @@ pom.xml
 Run the following command where <patch file> needs to be replaced with the name of the patch:
 
 ``` 
-git apply --check <patch file>
+git apply --exclude README.md --exclude *.png --check <patch file>
 ```
 
 This command will return whether it is possible to apply the patch to your installation. This should pose no problems in case the DSpace is not customized or in case not much customizations are present.   
@@ -105,7 +105,7 @@ In case, the check is successful, the patch can be installed without any problem
 To apply the patch, the following command should be run where <patch file> is replaced with the name of the patch file. 
 
 ``` 
-git apply --whitespace=nowarn --reject <patch file>
+git apply --exclude README.md --exclude *.png --whitespace=nowarn --reject <patch file>
 ```
 
 This command will tell git to apply the patch and ignore unharmful whitespace issues. The `--reject` flag instructs the command to continue when conflicts are encountered and saves the corresponding code hunks to a `.rej` file so you can review and apply them manually later on. Before continuing to the next step, you have to resolve all merge conflicts indicated by the `.rej` files. After solving the merge conflicts, remove all the `.rej` files.
