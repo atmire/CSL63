@@ -12,3 +12,6 @@
 *.PDF  diff=astextplain
 *.rtf  diff=astextplain
 *.RTF  diff=astextplain
+README.md linguist-generated=true
+Export_button.png linguist-generated=true
+Export_formats.png linguist-generated=true
