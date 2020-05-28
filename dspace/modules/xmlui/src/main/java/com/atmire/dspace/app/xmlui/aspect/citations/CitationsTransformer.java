@@ -90,7 +90,7 @@ public class CitationsTransformer extends AbstractDSpaceTransformer {
                 row.addCellContent(cslStyle.getId() + "");
                 row.addCell().addXref("citations/style/" + cslStyle.getId(), cslStyle.getCslFileName());
                 row.addCellContent(cslStyle.getAlias());
-                row.addCell(null, null, "").addFigure("/", null, "glyphicon " + (cslStyle.isGlobal() ? "glyphicon-ok" : "glyphicon-remove"));
+                row.addCell(null, null, "").addHighlight("glyphicon " + (cslStyle.isGlobal() ? "glyphicon-ok" : "glyphicon-remove")).addContent(" ");
 
                 Button button = row.addCell().addButton("edit_" + cslStyle.getId());
                 button.setValue(T_overview_edit);

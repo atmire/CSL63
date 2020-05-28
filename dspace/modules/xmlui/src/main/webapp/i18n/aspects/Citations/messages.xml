@@ -18,7 +18,7 @@
    <i18n:message key="xmlui.Citations.CitationsTransformer.add_new_style.text.label">Alias</i18n:message>
    <i18n:message key="xmlui.Citations.CitationsTransformer.overview.delete">Delete styles</i18n:message>
    <i18n:message key="xmlui.Citations.CitationsTransformer.overview.edit">Edit style</i18n:message>
-   <i18n:message key="xmlui.Citations.CitationsTransformer.overview.explanation">[Explanatory paragraph about how to use the page] (...)</i18n:message>
+   <i18n:message key="xmlui.Citations.CitationsTransformer.overview.explanation">The table below lists all citation styles which are available to you on the repository. Styles marked as "Global" have been defined by repository administrators and can only be edited by them.<br/>The other Styles (i.e. not marked as "Global") are personal citation styles that are associated with your user and that you can edit.<br/>At the bottom of the page, you also have the ability to add a new CSL style.   </i18n:message>
    <i18n:message key="xmlui.Citations.CitationsTransformer.overview.head">Citations format</i18n:message>
    <i18n:message key="xmlui.Citations.CitationsTransformer.overview.table.header.alias">Alias</i18n:message>
    <i18n:message key="xmlui.Citations.CitationsTransformer.overview.table.header.citation_file">Citation file</i18n:message>
