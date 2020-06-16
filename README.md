@@ -22,7 +22,7 @@ For more information about the Citation Style Language, please refer to https://
 
 # Acknowledgements <a name="Acknowledgements"></a>
 
-The CSL patch has been supported and funded by the University of Bordeaux (www.u-bordeaux.com) within the framework IdEx Bordeaux n° ANR 10-IDEX-03-02by, and developed by Atmire (https://www.atmire.com/).
+The CSL patch has been supported and funded by the University of Bordeaux (www.u-bordeaux.com) within the framework IdEx Bordeaux n° ANR 10-IDEX-03-02, and developed by Atmire (https://www.atmire.com/).
 
 # Features <a name="Features"></a>
 
