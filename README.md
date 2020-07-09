@@ -127,7 +127,7 @@ The configuration of the metadata mapping is located in the dspace/config/spring
 Hereunder, you will find an example mapping for the metadata "Title":
         <property name="title" value="dc.title"/>
 
-The property name that should be defined is the type of field within the citation that you want to see filled in, the way how this is filled in is determined by the citation file that the user selects. The value of this field is defined by the config namely by entering a metadata field in the value of the property. This metadata field will be retrieved for the items for which a citation is created, the value of this metadata field will be filled in into the corresponding property of the citation.
+The property name that should be defined is the type of field within the citation that you want to see filled in (you can find useful information about this within the CSL specification : https://github.com/citation-style-language/documentation/blob/master/specification.rst), the way how this is filled in is determined by the citation file that the user selects. The value of this field is defined by the config namely by entering a metadata field in the value of the property. This metadata field will be retrieved for the items for which a citation is created, the value of this metadata field will be filled in into the corresponding property of the citation.
 
 For example if we want to fill in the title for a citation, we define a property with name 'title' and value 'dc.title'. This will fill in the title in the citation with the value retrieved in the dc.title metadata field for an item. Example properties with all possible names are provided in comments.
 
